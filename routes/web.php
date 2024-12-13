@@ -7,5 +7,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/product', [ProductController::class, 'upload']);
-Route::get('/product', [ProductController::class, 'index']);
