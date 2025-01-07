@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => 'api',
+        'passwords' => 'user',
     ],
 
     /*
@@ -36,8 +36,8 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
+        'api' => [
+            'driver' => 'jwt',
             'provider' => 'users',
         ],
     ],
@@ -59,7 +59,6 @@ return [
     |
     */
 
-    'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
@@ -69,7 +68,7 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -82,6 +81,7 @@ return [
     |
     | The expiry time is the number of minutes that each reset token will be
     | considered valid. This security feature keeps tokens short-lived so
+    'providers' => [
     | they have less time to be guessed. You may change this as needed.
     |
     | The throttle setting is the number of seconds a user must wait before
@@ -109,7 +109,10 @@ return [
     | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
-
+    'api' => [
+        'driver' => 'session',
+        'provider' => 'users',
+    ],
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
 ];
