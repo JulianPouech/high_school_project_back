@@ -12,6 +12,9 @@ class ProductController extends Controller
 {
     use JsonResponseTrait;
 
+    public function __construct() {
+    }
+
     public function index(): JsonResponse {
         $products = Product::all();
 
